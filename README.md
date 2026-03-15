@@ -13,7 +13,8 @@ The `PollContract` records votes permanently on the Stellar blockchain. It ensur
 - **Persistent Storage:** Vote tallies are safely persisted on the Stellar blockchain via Soroban's persistent storage.
 
 ## Deployed Smart Contract Link
-poll
+![alt text](image.png)
+https://lab.stellar.org/r/testnet/contract/CBEZVCSQHDVJPJM5H2RE465PN32INYZG7MBPDXIQA6ZVLV7UXWGBV5SJ
 
 ---
 
