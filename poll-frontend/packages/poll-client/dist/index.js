@@ -10,21 +10,21 @@ if (typeof window !== "undefined") {
 export const networks = {
     testnet: {
         networkPassphrase: "Test SDF Network ; September 2015",
-        contractId: "CBDAEVT4A64Q47UIOJVFUFZFWFWSCJNBESC7SW4D6N7IC34CTROOUZVAT",
+        contractId: "CAOFYO6ECVH6RTUU3G4QRYRRT7JN7L2DQIFMQFIIXQRJJ42DBJAA66NJR",
     }
 };
 export class Client extends ContractClient {
     options;
-    static async deploy(
-    /** Options for initializing a Client as well as for calling a method, with extras specific to deploying. */
-    options) {
+    static async deploy(options) {
         return ContractClient.deploy(null, options);
     }
     constructor(options) {
-        super(new ContractSpec(["AAAAAgAAAAAAAAAAAAAAB0RhdGFLZXkAAAAAAwAAAAAAAAAAAAAACFllc0NvdW50AAAAAAAAAAAAAAAHTm9Db3VudAAAAAABAAAAAAAAAAVWb3RlZAAAAAAAAAEAAAAT",
+        super(new ContractSpec([
+            "AAAAAgAAAAAAAAAAAAAAB0RhdGFLZXkAAAAAAwAAAAAAAAAAAAAACFllc0NvdW50AAAAAAAAAAAAAAAHTm9Db3VudAAAAAABAAAAAAAAAAVWb3RlZAAAAAAAAAEAAAAT",
             "AAAAAAAAAE9Wb3RlIGluIHRoZSBwb2xsLgpgdm90ZV95ZXNgIGluZGljYXRlcyBpZiB0aGUgdm90ZSBpcyBZZXMgKHRydWUpIG9yIE5vIChmYWxzZSkuAAAAAAR2b3RlAAAAAgAAAAAAAAAFdm90ZXIAAAAAAAATAAAAAAAAAAh2b3RlX3llcwAAAAEAAAAA",
             "AAAAAAAAAC9SZXRyaWV2ZSB0aGUgY3VycmVudCB2b3RlIHRhbGxpZXMgZm9yIChZZXMsIE5vKQAAAAAJZ2V0X3ZvdGVzAAAAAAAAAAAAAAEAAAPtAAAAAgAAAAQAAAAE",
-            "AAAAAAAAACdDaGVjayBpZiBhIHNwZWNpZmljIGFkZHJlc3MgaGFzIGFscmVhZHkgdm90ZWQAAAAACWhhc192b3RlZAAAAAAAAAEAAAAAAAAABXZvdGVyAAAAAAAATAAAAAEAAAAb"]), options);
+            "AAAAAAAAAC1DaGVjayBpZiBhIHNwZWNpZmljIGFkZHJlc3MgaGFzIGFscmVhZHkgdm90ZWQAAAAAAAAJaGFzX3ZvdGVkAAAAAAAAAQAAAAAAAAAFdm90ZXIAAAAAAAATAAAAAQAAAAE="
+        ]), options);
         this.options = options;
     }
     fromJSON = {

@@ -3,11 +3,10 @@
 
 import { useEffect, useState } from "react";
 import { isAllowed, setAllowed, requestAccess, signTransaction } from "@stellar/freighter-api";
-import { Client } from "poll-client";
+import { Client, networks } from "poll-client";
 
 const client = new Client({
-  networkPassphrase: "Test SDF Network ; September 2015",
-  contractId: "CBDAEVT4A64Q47UIOJVFUFZFWFWSCJNBESC7SW4D6N7IC34CTROOUZVAT",
+  ...networks.testnet,
   rpcUrl: "https://soroban-testnet.stellar.org",
 });
 
