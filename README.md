@@ -1,20 +1,42 @@
 # Poll Soroban Smart Contract
 
 ## Project Description
-This is a decentralized basic polling application built using Rust and the Soroban Smart Contract platform on the Stellar network. It provides a simple and transparent way to pose a question and allow network participants to vote either "Yes" or "No". 
+A decentralized polling application built using **Rust** and the **Soroban Smart Contract** platform on Stellar. It provides a transparent, tamper-proof way to pose a question and allow any network participant to cast a permanent on-chain vote.
+
+A full **Next.js frontend** is included, allowing users to connect their **Freighter wallet**, vote in one click, and watch live results update in real time directly from the blockchain.
 
 ## What it does
-The `PollContract` records votes permanently on the Stellar blockchain. It ensures that each participant can only cast their vote once. Users authenticate their vote via their Stellar account (Address), and the contract keeps an updated tally of all "Yes" and "No" counts, which can be retrieved and queried by anyone.
+The `PollContract` records votes permanently on the Stellar blockchain. It enforces a strict **one-vote-per-address** rule. Users authenticate via their Stellar wallet (Freighter), and the contract keeps an updated tally of all "Yes" and "No" counts, readable by anyone.
 
 ## Features
-- **Binary Voting System:** Users can cast a boolean vote (Yes = True, No = False).
-- **Sybil Resistance (Basic):** Enforces a one-vote-per-address rule to prevent users from voting multiple times.
-- **Secure Authentication:** Utilizes Soroban's native `require_auth()` capability to guarantee that only the owner of the address is submitting the vote.
-- **Persistent Storage:** Vote tallies are safely persisted on the Stellar blockchain via Soroban's persistent storage.
+- **Binary Voting System:** Cast a Yes or No vote, recorded permanently on the blockchain.
+- **Sybil Resistance:** Enforces one-vote-per-address — no double voting possible.
+- **Secure Authentication:** Soroban's native `require_auth()` ensures only the wallet owner can submit a vote.
+- **`has_voted` Check:** Frontend queries the contract to pre-check if an address has already voted — no scary transaction errors shown to users.
+- **Persistent Storage:** Vote tallies are safely persisted on-chain via Soroban persistent storage.
+- **Live Frontend:** Beautiful Next.js UI with Freighter wallet integration, animated progress bars, and real-time vote updates.
 
-## Deployed Smart Contract Link
-![alt text](image.png)
-https://lab.stellar.org/r/testnet/contract/CBEZVCSQHDVJPJM5H2RE465PN32INYZG7MBPDXIQA6ZVLV7UXWGBV5SJ
+## Deployed Smart Contract
+- **Contract ID:** `CBEZVCSQHDVJPJM5H2RE465PN32INYZG7MBPDXIQA6ZVLV7UXWGBV5SJ`
+- **Network:** Stellar Testnet
+- **Explorer:** [View on Stellar Lab](https://lab.stellar.org/r/testnet/contract/CBEZVCSQHDVJPJM5H2RE465PN32INYZG7MBPDXIQA6ZVLV7UXWGBV5SJ)
+![alt text](<Screenshot 2026-03-16 124455.png>)
+
+---
+
+## Project Structure
+```
+poll/
+├── contracts/hello-world/     # Soroban smart contract (Rust)
+│   └── src/
+│       ├── lib.rs             # Contract logic
+│       └── test.rs            # Unit tests
+└── poll-frontend/             # Next.js frontend
+    ├── src/app/
+    │   ├── page.tsx           # Main UI
+    │   └── globals.css        # Styling
+    └── packages/poll-client/  # Auto-generated TypeScript bindings
+```
 
 ---
 
@@ -23,21 +45,23 @@ https://lab.stellar.org/r/testnet/contract/CBEZVCSQHDVJPJM5H2RE465PN32INYZG7MBPD
 ### Prerequisites
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Stellar CLI](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup)
-- Add target: `rustup target add wasm32-unknown-unknown`
+- [Node.js](https://nodejs.org/) (v18+)
+- [Freighter Wallet](https://www.freighter.app/) browser extension (set to Testnet)
+- Add WASM target: `rustup target add wasm32-unknown-unknown`
 
-### Build
-Make sure you are in the project root directory (`poll`):
-```bash
-cd poll
-```
+---
 
-To build the contract, run:
+### Build the Smart Contract
 ```bash
 cargo build --target wasm32-unknown-unknown --release
 ```
 
-### Deploy
-Ensure you are in the `poll` directory. To deploy the contract to the testnet (assuming an account alias `alice` has been created and funded):
+### Test the Smart Contract
+```bash
+cargo test
+```
+
+### Deploy the Smart Contract
 ```powershell
 stellar contract deploy `
   --wasm target/wasm32-unknown-unknown/release/poll.wasm `
@@ -46,8 +70,14 @@ stellar contract deploy `
   --alias poll
 ```
 
-### Test
-To run the automated tests for the contract, make sure you are in the `poll` directory:
+---
+
+### Run the Frontend Locally
 ```bash
-cargo test
+cd poll-frontend
+npm install
+npm run dev
 ```
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
+
+> Make sure the **Freighter** extension is installed and configured to the **Stellar Testnet**.
