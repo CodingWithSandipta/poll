@@ -45,6 +45,12 @@ impl PollContract {
         let no_count: u32 = env.storage().persistent().get(&DataKey::NoCount).unwrap_or(0);
         (yes_count, no_count)
     }
+
+    /// Check if a specific address has already voted
+    pub fn has_voted(env: Env, voter: Address) -> bool {
+        let voted_key = DataKey::Voted(voter);
+        env.storage().persistent().get(&voted_key).unwrap_or(false)
+    }
 }
 
 mod test;
