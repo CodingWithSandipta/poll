@@ -16,8 +16,9 @@ The `PollContract` records votes permanently on the Stellar blockchain. It enfor
 - **Persistent Storage:** Vote tallies are safely persisted on-chain via Soroban persistent storage.
 - **Live Frontend:** Beautiful Next.js UI with Freighter wallet integration, animated progress bars, and real-time vote updates.
 
-## Deployed Smart Contract
-- **Contract ID:** `CBEZVCSQHDVJPJM5H2RE465PN32INYZG7MBPDXIQA6ZVLV7UXWGBV5SJ`
+## Deployed Links
+- **Vercel App (Frontend):** [poll-smoky-theta.vercel.app](https://poll-smoky-theta.vercel.app/)
+- **Smart Contract:** `CBEZVCSQHDVJPJM5H2RE465PN32INYZG7MBPDXIQA6ZVLV7UXWGBV5SJ`
 - **Network:** Stellar Testnet
 - **Explorer:** [View on Stellar Lab](https://lab.stellar.org/r/testnet/contract/CBEZVCSQHDVJPJM5H2RE465PN32INYZG7MBPDXIQA6ZVLV7UXWGBV5SJ)
 ![alt text](<Screenshot 2026-03-16 124455.png>)
